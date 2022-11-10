@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <!--    <script src="home.js"></script>-->
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="included_content" style="width:auto;height: 90%"></div>
+    <div id="county_name_div">
+        <span>County name: </span> <span id="county_name"></span>
+    </div>
+<!--    <button id="activate_button", onclick="activate_clicks()">Click to activate</button>-->
+    <script>
+        $(document).ready(function () {
+            $("#included_content").load("UK_county_map.svg");
+            setTimeout(activate_clicks, 100)    // Ptdr rip le javascript
+        })
+
+        function activate_clicks() {
+            let paths = $('#included_content g#Counties path')
+            paths.on('click', function () {
+                console.log("ID: ", $(this).attr('id'))
+            })
+
+            paths.hover(function () {
+                let county_name = $(this).attr('id')
+                // console.log("Hovered on: ", county_name)
+                paths.css('fill', "#fefee9")
+                $(this).css('fill', 'lightblue')
+                $('#county_name').html(county_name)
+            })
+            console.log("Activated!")
+        }
+    </script>
+</body>
+</html>
