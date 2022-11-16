@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends 'base.html' %}
 
+{% block title %} County map {% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-
-    <!--    <script src="home.js"></script>-->
-
-    <link rel="stylesheet" href="../../static/css/style.css">
-</head>
-
-<body>
-
+{% block content %}
     <div id="included_content" style="width:auto;height: 90%"></div>
     <div id="county_name_div">
         <span>County name: </span> <span id="county_name"></span>
     </div>
-<!--    <button id="activate_button", onclick="activate_clicks()">Click to activate</button>-->
+    <!--    <button id="activate_button", onclick="activate_clicks()">Click to activate</button>-->
     <script>
         $(document).ready(function () {
-            $("#included_content").load("UK_county_map.svg");
+            $("#included_content").load("{{ url_for('static', filename='images/UK_county_map.svg') }}");
             setTimeout(activate_clicks, 100)    // Ptdr rip le javascript
         })
 
@@ -41,5 +30,5 @@
             console.log("Activated!")
         }
     </script>
-</body>
-</html>
+
+{% endblock %}

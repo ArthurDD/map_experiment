@@ -1,2 +1,2 @@
-// Map in home.html
+// Map in county_map.html
 

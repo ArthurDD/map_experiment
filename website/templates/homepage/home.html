@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if session['name'] %}
+        <h3>Hi {{ session['name'] }}, this is the start of the website!</h3>
+    {% else %}
+        <h3>Unfortunately, I don't know your name yet :( </h3>
+        <form id="name_form" method="post" action="{{ url_for('set_name')}}">
+            <div class="row">
+                <div class="col-sm-3">
+    <!--                        <label for="name_input">Name: </label>-->
+                    <input id="name_input" class="form-control" placeholder="Enter your name" style="width: 100%"
+                           name="name">
+                </div>
+
+                <div class="col-sm-2">
+    <!--                        <label for="name_btn"></label>-->
+                    <button id="name_btn" class="btn btn-primary form-control">Validate</button>
+                </div>
+            </div>
+        </form>
+
+    {% endif %}
+{% endblock %}

@@ -10,7 +10,7 @@ app.secret_key = 'BAD_SECRET_KEY'
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('homepage/home.html')
 
 
 @app.route('/set_name', methods=["GET", "POST"])
@@ -19,6 +19,11 @@ def set_name():
         session['name'] = request.form['name']
 
     return redirect(url_for('home'))
+
+
+@app.route('/display_map/')
+def display_map():
+    return render_template('map/county_map.html')
 
 
 if __name__ == "__main__":
