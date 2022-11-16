@@ -1,0 +1,17 @@
+button{
+    color:lightcoral;
+}
+
+button:hover {
+    color: darkseagreen;
+}
+
+.test_btn {
+    background-color: darkseagreen;
+    color: green;
+}
+
+.test_btn:hover {
+    background-color: #caefca;
+    color: green;
+}
