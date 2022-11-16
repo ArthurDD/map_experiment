@@ -17,9 +17,55 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <p>Hi, this is the start of the website!</p>
+    <div id="navbar_div">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='favicon.ico') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                CrazyCounties
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+<!--            <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--                <ul class="navbar-nav">-->
+<!--                    <li class="nav-item active">-->
+<!--                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Features</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Pricing</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+        </nav>
+    </div>
+    <div id="content">
+        {% if session['name'] %}
+            <h3>Hi {{ session['name'] }}, this is the start of the website!</h3>
+        {% else %}
+            <h3>Unfortunately, I don't know your name yet :( </h3>
+            <form id="name_form" method="post" action="{{ url_for('set_name')}}">
+                <div class="row">
+                    <div class="col-sm-3">
+<!--                        <label for="name_input">Name: </label>-->
+                        <input id="name_input" class="form-control" placeholder="Enter your name" style="width: 100%"
+                               name="name">
+                    </div>
 
-    <button class="btn test_btn">Don't mind me :)</button>
+                    <div class="col-sm-2">
+<!--                        <label for="name_btn"></label>-->
+                        <button id="name_btn" class="btn btn-primary form-control">Validate</button>
+                    </div>
+                </div>
+            </form>
+
+
+        {% endif %}
+    </div>
+
+
 
 </body>
 </html>

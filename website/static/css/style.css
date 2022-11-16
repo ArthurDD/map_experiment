@@ -15,3 +15,23 @@ button:hover {
     background-color: #caefca;
     color: green;
 }
+
+
+/* NAVBAR */
+
+#navbar_div {
+    padding: 0 10px;
+    margin-bottom: 40px;
+}
+
+
+/* CONTENT */
+
+#content {
+    padding: 10px;
+}
+
+
+#name_form {
+    margin: 30px 10px 0;
+}
