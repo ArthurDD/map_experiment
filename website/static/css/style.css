@@ -21,17 +21,37 @@ button:hover {
 
 #navbar_div {
     padding: 0 10px;
-    margin-bottom: 40px;
+    position: fixed;
+    top: 0;
+    width:100%
 }
+
 
 
 /* CONTENT */
 
-#content {
-    padding: 10px;
+#name_form {
+    margin: 30px 10px 0;
 }
 
 
-#name_form {
-    margin: 30px 10px 0;
+/* Div of the svg maps */
+#svg_map_div {
+    margin: 0 auto;
+    height: 100vh;
+    display: none;
+}
+
+#zoom_button {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f36767;
+    border: solid 1px #ffffff;
+    border-radius: 15px;
+    opacity: 0.5
+}
+
+#zoom_button:hover {
+    opacity: 1;
 }

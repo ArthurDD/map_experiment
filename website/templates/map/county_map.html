@@ -3,32 +3,70 @@
 {% block title %} County map {% endblock %}
 
 {% block content %}
-    <div id="included_content" style="width:auto;height: 90%"></div>
+    <div id="svg_map_div"> This should take the whole page</div>
     <div id="county_name_div">
         <span>County name: </span> <span id="county_name"></span>
     </div>
+    <button id="zoom_button" class="btn"><i class="bi bi-zoom-in"></i></button>
     <!--    <button id="activate_button", onclick="activate_clicks()">Click to activate</button>-->
     <script>
-        $(document).ready(function () {
-            $("#included_content").load("{{ url_for('static', filename='images/UK_county_map.svg') }}");
-            setTimeout(activate_clicks, 100)    // Ptdr rip le javascript
+        $(function () {
+            $("#svg_map_div").load("{{ url_for('static', filename='maps/' + map_name + '.svg') }}");
+            setTimeout(activate_clicks, 200)    // Ptdr rip le javascript
+            setTimeout(set_dimensions, 300)
+            {#setTimeout(initialise_svg_pan_zoom, 300)#}
         })
 
         function activate_clicks() {
-            let paths = $('#included_content g#Counties path')
+            let paths = $('#svg_map_div g#Counties path')
             paths.on('click', function () {
                 console.log("ID: ", $(this).attr('id'))
             })
 
             paths.hover(function () {
                 let county_name = $(this).attr('id')
-                // console.log("Hovered on: ", county_name)
-                paths.css('fill', "#fefee9")
+                {#console.log("Hovered on: ", county_name)#}
+                paths.css('fill', "#fff3e3")
                 $(this).css('fill', 'lightblue')
                 $('#county_name').html(county_name)
             })
             console.log("Activated!")
         }
+
+        function set_dimensions () {
+            let nav_height = $('#navbar_div').outerHeight(true);
+            {#let content_height = document.documentElement.clientHeight - nav_height#}
+            $('#content').css('height', window.innerHeight - nav_height).css('margin-top', nav_height)
+            $('#svg_map_div svg').css('height', '100%').css('width', '100%')
+            $('#svg_map_div').css('height', window.innerHeight - nav_height).css('width', 'auto').show()
+        }
+
+
+        function zoom_in () {
+            $('#svg_map_div').css('height', 'auto').css('width', 'auto').css('text-align', 'center')
+            $('#svg_map_div svg').css('height', 'auto').css('width', 'auto')
+        }
+
+
+        function zoom_out () {
+            let nav_height = $('#navbar_div').outerHeight(true);
+            $('#svg_map_div').css('height', window.innerHeight - nav_height).css('width', 'auto')
+            $('#svg_map_div svg').css('height', '100%').css('width', '100%')
+        }
+
+
+        var zoomed_in = false;
+        $('#zoom_button').on('click', function () {
+            if (!zoomed_in) {
+                zoom_in();
+                $('#zoom_button').html('<i class="bi bi-zoom-out"></i>')
+            } else {
+                zoom_out();
+                $('#zoom_button').html('<i class="bi bi-zoom-in"></i>')
+            }
+            zoomed_in = !zoomed_in;
+
+        })
     </script>
 
 {% endblock %}

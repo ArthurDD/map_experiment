@@ -21,9 +21,12 @@ def set_name():
     return redirect(url_for('home'))
 
 
-@app.route('/display_map/')
-def display_map():
-    return render_template('map/county_map.html')
+@app.route('/display_map/<string:map_name>')
+def display_map(map_name=None):
+    if map_name is None:
+        return "Error, no map name given."
+    else:
+        return render_template('map/county_map.html', map_name=map_name)
 
 
 if __name__ == "__main__":
